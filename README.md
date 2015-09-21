@@ -1,2 +1,15 @@
 # ProgramacionIII
-Tipos de Datos, Ciclos de Iteración, Documentación, etc.
+======================================
+Programación de Computadoras III - UIP
+======================================
+
+:Autor: <nombre>
+:Fecha: <fecha>
+:Versión: <version>
+
+<descripcion>
+
+—-------
+Licencia
+—-------
+<licencia>
