@@ -15,15 +15,18 @@ while x <= user:
 
 	if compra >= 500:
 		desc = compra * 0.3
-		print("Descuento de 30% para la compra. El total es " +str(desc)+ " dolares.")
+		montof = compra + desc
+		print("Descuento de 30% para la compra. El total es " +str(montof)+ " dolares.")
 	
 	if compra < 500 && >= 200:
 		desc = compra * 0.2
-		print("Descuento de 20% para la compra. El total es " +str(desc)+ " dolares.")
+		montof = compra + desc
+		print("Descuento de 20% para la compra. El total es " +str(montof)+ " dolares.")
 
 	if compra < 200 && >= 100:
 		desc = compra * 0.1
-		print("Descuento de 10% para la compra. El total es " +str(desc)+ " dolares.")
+		montof = compra + desc
+		print("Descuento de 10% para la compra. El total es " +str(montof)+ " dolares.")
 
 	else:
 		print("El total de la compra es " +str(compra)+ " dolares. ")
