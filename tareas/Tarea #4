@@ -1,0 +1,14 @@
+# Dado un intervalo de tiempo en minutos, calcular los días, horas y minutos correspondientes.
+# ¿Qué es __main__ y cómo funciona?
+
+
+
+time_in_minutes = 0
+time_in_minutes = int(input("d.b Calculo de Tiempo de Minutos d.b \n\n\n Favor, ingrese tiempo estimado de minutos: "))
+time_in_minutes = time_in_minutes / 1440
+if time_in_minutes >= 0:
+    day = time_in_minutes
+    go = time_in_minutes % 140
+    hour = go / 60
+    minutes = go % 60
+    print("\nCantidad De Dias: " + str(day) + "\nCantidad De Horas: " + str(hour) + "\nCantidad de Minutos: " + str(minutes))
