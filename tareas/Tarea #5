@@ -1,0 +1,52 @@
+#Tarea #5
+#Nombre: Arquimedes Escartín, 8-863-235
+
+def imprimirLista(productos):
+    print("\nLista de supermercado Escartín:")
+    for s in productos.items():
+        print("Producto de la Lista:", s)
+    print()
+
+def agregarProducto(productos, producto):
+    productos[nombre] = producto
+
+def borrarProducto(productos, nombre):
+    if nombre in productos:
+        del productos[nombre]
+    else:
+        print("no se encontro este producto:",nombre)	
+	
+def mostrarMenu():
+    print('\n1. Imprimir lista')
+    print('2. Agregar un producto a la lista')
+    print('3. Eliminar un producto de la lista')
+    print('4. Salir')
+    print()
+
+if __name__ == '__main__':
+    lista_producto = {}
+    opcion_menu = 0
+    while True:
+        mostrarMenu()
+        try:
+            opcion_menu = int(input("\nIntroduzca una opcion (1-4): "))
+        except:
+            print("Error._ Opcion no valida.")
+        else:
+            if opcion_menu == 1:
+                imprimirLista(list_of_product)
+            elif opcion_menu == 2:
+                print("Adicionar producto a la lista\n")
+                nombre = input("Producto en adición para lista: ")
+                agregarProducto(list_of_product, nombre)
+            elif opcion_menu == 3:
+                print("Eliminar producto de la lista:\n")
+                nombre = input("producto a eliminar: \n")
+                borrarProducto(list_of_product, nombre)
+            elif opcion_menu == 4:
+                break
+            else:
+                print("Error._ Opcion no valida.")
+                mostrarMenu()
+
+    print("Gracias por utilizar el programa!")
