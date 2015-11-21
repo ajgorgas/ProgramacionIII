@@ -9,10 +9,10 @@ Programación de Computadoras III - UIP
 
 Mi repositorio de trabajo para la clase de Programacion de Computadoras III, Universidad Interamericana de Panama.
 
-—-------
+———————————————————————————
 
 Licencia
 
-—-------
+———————————————————————————
 
 MIT
