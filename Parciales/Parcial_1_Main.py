@@ -1,4 +1,6 @@
 #ArquimedesEscartin
+#Parcial 1. Programación III.
+#Programa que permite la ejecución de un reloj.
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.graphics import Color, Line
