@@ -3,19 +3,14 @@
 Programación de Computadoras III - UIP
 ======================================
 
-:Autor: Arquimedes Escartín
+Autor: _Arquimedes Escartín_ <br/>
+Fecha: _14 de septiembre del año 2015_ <br/>
+Versión: _1.0_ <br/>
 
-:Fecha: 14 de Septiembre de 2015
+##Repositorio del curso Programación de Computadoras III
 
-:Versión: 1.0
-
+####Licencia
 
 Mi repositorio de trabajo para la clase de Programacion de Computadoras III, Universidad Interamericana de Panama.
-
-———————————————————————————
-
-Licencia
-
-———————————————————————————
 
 MIT
