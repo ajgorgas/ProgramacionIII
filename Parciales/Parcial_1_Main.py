@@ -1,147 +1,101 @@
 #ArquimedesEscartin
-#:import ListAdapter kivy.adapters.listadapter.ListAdapter
-#:import Factory kivy.factory.Factory
+from kivy.app import App
+from kivy.uix.widget import Widget
+from kivy.graphics import Color, Line
+from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
+from math import cos, sin, pi
+from kivy.clock import Clock
+from kivy.lang import Builder
+from kivy.properties import NumericProperty
+from kivy.core.window import Window
+from kivy.uix.image import Image
 
-<Screen>:
-	canvas:
-		Color:
-			rgb: .2, .2, .2
-		Rectangle:
-			size: self.size
+import datetime
 
-<MutableLabelTextInput@MutableTextInput>:
-	Label:
-		id: w_label
-		pos: root.pos
-		text: root.text
-
-	TextInput:
-		id: w_textinput
-		pos: root.pos
-		text: root.text
-		multiline: root.multiline
-		on_focus: root.check_focus_and_view(self)
-
-<MutableRstDocumentTextInput@MutableTextInput>:
-	RstDocument:
-		id: w_label
-		pos: root.pos
-		text: root.text
-
-	TextInput:
-		id: w_textinput
-		pos: root.pos
-		text: root.text
-		multiline: root.multiline
-		on_focus: root.check_focus_and_view(self)
-
-
-<NoteView>:
-
-	on_note_content: app.set_note_content(self.note_index, self.note_content)
-	on_note_title: app.set_note_title(self.note_index, self.note_title)
-
-    BoxLayout:
-
-		orientation: 'vertical'
-
-		BoxLayout:
-
-			orientation: 'horizontal'
-			size_hint_y: None
-			height: '48dp'
-			padding: '5dp'
-
-			canvas:
-				Color:
-					rgb: .3, .3, .3
-				Rectangle:
-					pos: self.pos
-					size: self.size
-
-			Button:
-				text: '<'
-				size_hint_x: None
-				width: self.height
-				on_release: app.go_notes()
-
-			MutableLabelTextInput:
-				text: root.note_title
-				font_size: '16sp'
-				multiline: False
-				on_text: root.note_title = self.text
-
-			Button:
-				text: 'X'
-				size_hint_x: None
-				width: self.height
-				on_release: app.del_note(root.note_index)
+kv = '''
+#:import math math
+[ClockNumber@Label]:
+    text: str(ctx.i)
+    pos_hint: {"center_x": 0.5+0.42*math.sin(math.pi/6*(ctx.i-12)), "center_y": 0.5+0.42*math.cos(math.pi/6*(ctx.i-12))}
+    font_size: self.height/16
+<MyClockWidget>:
+    face: face
+    ticks: ticks
+    FloatLayout:
+        id: face
+        size_hint: None, None
+        pos_hint: {"center_x":0.5, "center_y":0.5}
+        size: 0.9*min(root.size), 0.9*min(root.size)
+        canvas:
+            Color:
+                rgb: 0.1, 0.1, 0.1
+            Ellipse:
+                size: self.size     
+                pos: self.pos
+        ClockNumber:
+            i: 1
+        ClockNumber:
+            i: 2
+        ClockNumber:
+            i: 3
+        ClockNumber:
+            i: 4
+        ClockNumber:
+            i: 5
+        ClockNumber:
+            i: 6
+        ClockNumber:
+            i: 7
+        ClockNumber:
+            i: 8
+        ClockNumber:
+            i: 9
+        ClockNumber:
+            i: 10
+        ClockNumber:
+            i: 11
+        ClockNumber:
+            i: 12
+    Ticks:
+        id: ticks
+        r: min(root.size)*0.9/2
+'''
+Builder.load_string(kv)
 
 
-        MutableRstDocumentTextInput:
-            text: root.note_content
-			on_text: root.note_content = self.text
+class MyClockWidget(FloatLayout):
+    pass
 
-<NoteListItem>:
+class Ticks(Widget):
+    def __init__(self, **kwargs):
+        super(Ticks, self).__init__(**kwargs)
+        self.bind(pos=self.update_clock)
+        self.bind(size=self.update_clock)
 
-    height: '48sp'
-    size_hint_y: None
+    def update_clock(self, *args):
+        self.canvas.clear()
+        with self.canvas:
+            wimg = Image(source='elogo.png', pos=self.pos)
+            time = datetime.datetime.now()
+            ecolor1 = 53 / 255.0
+            ecolor2 = 153 / 255.0
+            ecolor3 = 228 / 255.0
+            Color(ecolor1, ecolor2, ecolor3)
+            Line(points=[self.center_x, self.center_y, self.center_x+0.8*self.r*sin(pi/30*time.second), self.center_y+0.8*self.r*cos(pi/30*time.second)], width=1, cap="round")
+            Color(ecolor1, ecolor2, ecolor3)
+            Line(points=[self.center_x, self.center_y, self.center_x+0.7*self.r*sin(pi/30*time.minute), self.center_y+0.7*self.r*cos(pi/30*time.minute)], width=2, cap="round")
+            Color(ecolor1, ecolor2, ecolor3)
+            th = time.hour*60 + time.minute
+            Line(points=[self.center_x, self.center_y, self.center_x+0.5*self.r*sin(pi/360*th), self.center_y+0.5*self.r*cos(pi/360*th)], width=3, cap="round")
 
-    canvas:
-        Color:
-            rgb: .3, .3, .3
-        Rectangle:
-            pos: self.pos
-            size: self.width, 1
+class MyClockApp(App):
+    Window.clearcolor = (.95,.95,.95,.95)
+    title = "eClock"
+    def build(self):
+        clock = MyClockWidget()
+        Clock.schedule_interval(clock.ticks.update_clock, 1)
+        return clock
 
-    BoxLayout:
-
-        padding: '5dp'
-
-        Label:
-            text: root.note_title
-
-        Button:
-            text: '>'
-            size_hint_x: None
-            width: self.height
-            on_release: app.edit_note(root.note_index)
-
-<Notes>:
-
-    BoxLayout:
-
-        orientation: 'vertical'
-
-		BoxLayout:
-
-			orientation: 'horizontal'
-			size_hint_y: None
-			height: '48dp'
-			padding: '5dp'
-
-			canvas:
-				Color:
-					rgb: .3, .3, .3
-				Rectangle:
-					pos: self.pos
-					size: self.size
-
-			Image:
-				source: 'data/icon.png'
-				mipmap: True
-				size_hint_x: None
-				width: self.height
-
-			Label:
-				text: 'Notes'
-				font_size: '16sp'
-
-			Button:
-				text: '+'
-				size_hint_x: None
-				width: self.height
-				on_release: app.add_note()
-
-        ListView:
-            adapter: ListAdapter(data=root.data, cls=Factory.NoteListItem, args_converter=root.args_converter)
+if __name__ == '__main__':
+    MyClockApp().run()
