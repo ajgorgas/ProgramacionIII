@@ -1,0 +1,14 @@
+Investigación API
+
+API es Application Program Interface, lo cual sería la interfaz de programación para aplicación. 
+Están conformadas por rutinas, procesos herramientas y protocolos para la elaboración de software, en especial aplicaciones. 
+Cuenta con varios propositos, uno siendo creador de interfaces graficas(GUI) y facilitar componentes para interacción, 
+haciendo mas facil la implementación de herramientas que ya existan, es decir migrar o reutilizar componentes para el desarrollo 
+de un programa. Se podría definir como un rompecabezas de procesos.
+
+La implementación en Python requiere que la descarga de la libreria kivy e importarla. Para que pueda correr sería necesario:
+  1. Versión mas reciente de Kivy.
+  2. Llamar la configuración de kivy
+  3. Tener directorios y modulos esenciales llamados en Python
+  
+  
