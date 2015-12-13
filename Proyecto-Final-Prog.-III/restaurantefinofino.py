@@ -1,7 +1,7 @@
 #Arquimedes Escartín
 #8-863-235
 #Software de restaurante en el que por cierta calificacion de servicio se introduce una cifra de donacion/propina
-#y se le hace beneficio a una ONG
+#y se le hace beneficio a una ONG.
 import kivy
 kivy.require('1.9.0')
 import re
