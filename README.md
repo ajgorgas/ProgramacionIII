@@ -3,7 +3,7 @@
 Programación de Computadoras III - UIP
 ======================================
 
-Autor: _Arquimedes Escartín_ <br/>
+
 Fecha: _14 de septiembre del año 2015_ <br/>
 Versión: _1.0_ <br/>
 
